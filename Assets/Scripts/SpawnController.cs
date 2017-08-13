@@ -14,7 +14,7 @@ public class SpawnController : MonoBehaviour {
 	public GameObject container;
 
 	private Vector3 offsetvec;
-	private int numtearparticles = 100;
+	private int numtearparticles = 50;
 	private GameObject[] tears;
 	private ParticlePhysicsDespawner[] tearparticles;
 	private Rigidbody[] tearrb;
