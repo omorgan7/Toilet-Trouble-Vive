@@ -5,7 +5,7 @@ using UnityEngine;
 public class ParticlePhysicsDespawner : MonoBehaviour {
 
 	//this class will stop physics calculations on anything it's attached to.
-
+	enum TearLayer {Physics=9,Static=10};
 	Rigidbody rb;
 
 	float starttime = 0f;
@@ -17,6 +17,7 @@ public class ParticlePhysicsDespawner : MonoBehaviour {
 	}
 
 	public void ResetPhysics(){
+		gameObject.layer = (int) TearLayer.Physics;
 		rb.isKinematic = false;//physics now applies.
 		//rb.detectCollisions = false;
 		starttime = Time.time;
@@ -26,9 +27,10 @@ public class ParticlePhysicsDespawner : MonoBehaviour {
 		ResetPhysics();
 	}
 
-	void Update(){
+	void FixedUpdate(){
 		float duration = Time.time - starttime;
 		if(duration >= stopTime){
+			gameObject.layer = (int) TearLayer.Static;
 			rb.isKinematic = true; //physics no longer applies
 		}
 	}

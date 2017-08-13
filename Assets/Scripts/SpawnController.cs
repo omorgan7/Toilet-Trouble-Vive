@@ -14,28 +14,38 @@ public class SpawnController : MonoBehaviour {
 	public GameObject container;
 
 	private Vector3 offsetvec;
+	private int numtearparticles = 100;
 	private GameObject[] tears;
+	private ParticlePhysicsDespawner[] tearparticles;
+	private Rigidbody[] tearrb;
 	private Vector3 direction;
 	private int tearindex = 0;
-
+	private int tearcount = 0;
+	private AudioSource audio;
 	// Use this for initialization
+	
 	void Awake(){
-		tears = new GameObject[numtears];
-		for(int i = 0; i<numtears; i++){
+		tears = new GameObject[numtearparticles];
+		tearparticles = new ParticlePhysicsDespawner[numtearparticles];
+		tearrb = new Rigidbody[numtearparticles];
+		for(int i = 0; i<numtearparticles; i++){
 			tears[i] = Instantiate(waterprefab);
 			tears[i].transform.parent = container.transform;
+			tearparticles[i] = tears[i].GetComponent<ParticlePhysicsDespawner>();
+			tearrb[i] = tears[i].GetComponent<Rigidbody>();
 			tears[i].SetActive(false);
 		}
 	}
 
 	void Start () {
+		audio = gameObject.GetComponent<AudioSource>();
 		InvokeRepeating("FireTears",startDelay,delay);
 		StartCoroutine(AudioDelay());
 	}
 
 	IEnumerator AudioDelay(){
 		yield return new WaitForSeconds(startDelay);
-		gameObject.GetComponent<AudioSource>().Play();
+		audio.Play();
 	}
 
 	void Update(){
@@ -45,15 +55,17 @@ public class SpawnController : MonoBehaviour {
 	}
 
 	void FireTears(){
-		if(tearindex < tears.Length){
+		if(tearcount < numtears){
 			tears[tearindex].SetActive(true);
-			tears[tearindex].GetComponent<ParticlePhysicsDespawner>().ResetPhysics();
+			tearparticles[tearindex].ResetPhysics();
 			tears[tearindex].transform.position = gameObject.transform.position;// + offsetvec;
-			tears[tearindex].GetComponent<Rigidbody>().AddForce(gameObject.transform.forward*force);
+			tearrb[tearindex].AddForce(gameObject.transform.forward*force);
 			++tearindex;
+			++tearcount;
+			tearindex = tearindex % numtearparticles;
 		}
 		else{
-			gameObject.GetComponent<AudioSource>().Stop();
+			audio.Stop();
 		}
 	}
 

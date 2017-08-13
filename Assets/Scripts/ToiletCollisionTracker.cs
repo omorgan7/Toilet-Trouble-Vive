@@ -8,6 +8,7 @@ public class ToiletCollisionTracker : MonoBehaviour {
 		get;
 		set;
 	}
+
 	void Start(){
 		score = 0;
 	}
