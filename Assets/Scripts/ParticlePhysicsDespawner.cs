@@ -10,6 +10,7 @@ public class ParticlePhysicsDespawner : MonoBehaviour {
 
 	float starttime = 0f;
 	public float stopTime = 5f;
+	public float turnOffTime = 10f;
 	public float collideAfter = 0.2f;
 	
 	void Awake () {
@@ -32,6 +33,9 @@ public class ParticlePhysicsDespawner : MonoBehaviour {
 		if(duration >= stopTime){
 			gameObject.layer = (int) TearLayer.Static;
 			rb.isKinematic = true; //physics no longer applies
+		}
+		if(duration >= turnOffTime){
+			gameObject.SetActive(false);
 		}
 	}
 }
