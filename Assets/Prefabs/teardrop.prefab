@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopTime: 3
+  turnOffTime: 10
   collideAfter: 0.01
 --- !u!135 &135575600445986094
 SphereCollider:
