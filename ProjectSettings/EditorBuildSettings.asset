@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/scene01.unity
     guid: fa1a710d4cfdf4fe483eff0826a9983f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/japan.unity
     guid: fe6f3b3a5e7f14e6f87b10a9cf810b90

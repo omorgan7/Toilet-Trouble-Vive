@@ -5,36 +5,20 @@ using UnityEngine;
 public class EarthquakeGenerator : MonoBehaviour {
 
 	public GameObject Bathroom;
-	public enum Axis {x,y,z};
-	public Axis axis = Axis.x;
-	Vector3 movementAxis;
-	Vector3 toiletPos;
-	Vector3 bathroomPos;
-	Vector2 direction;
 	public GameObject Toilet;
-
 	public float varyingDist = 0.5f;
 	public float fineDist = 0.1f;
 	public float speed = 1f;
 
-
-
 	float noise;
+	float pingpong = 0f;
+	Rigidbody toiletRB;
+	Vector3 direction, toiletDirection, toiletPos, bathroomPos;
 
 	void Start(){
-		switch (axis){
-			case(Axis.x):
-				movementAxis = new Vector3(1,0,0);
-				break;
-			case(Axis.y):
-				movementAxis = new Vector3(0,1,0);
-				break;
-			case(Axis.z):
-				movementAxis = new Vector3(0,0,1);
-				break;								
-		}
 		noise = fineDist;
 		toiletPos = Toilet.transform.position;
+		toiletRB = Toilet.GetComponent<Rigidbody>();
 		bathroomPos = Bathroom.transform.position;
 	}
 
@@ -43,9 +27,14 @@ public class EarthquakeGenerator : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		float pingpong = Mathf.PingPong(speed * Time.time + varyingDist/2f,varyingDist) - varyingDist/2f + Mathf.PingPong(Time.time,noise);
-		Bathroom.transform.position = (pingpong * movementAxis) + bathroomPos;
-		Toilet.transform.position = (pingpong * -1f * movementAxis) + toiletPos;
+		if(pingpong <= 0.001f && pingpong >= -0.001f){
+			direction = Random.insideUnitSphere;
+			toiletDirection = Random.insideUnitSphere;
+		}
+		pingpong = Mathf.PingPong(Time.time,2f * speed)-speed;
+
+		Bathroom.transform.position =  varyingDist*((pingpong+noise) * direction) + bathroomPos;
+		//toiletRB.AddForce(varyingDist*((-1*pingpong+noise) * toiletDirection));
 	}
 
 }

@@ -10,6 +10,7 @@ public class SpawnController : MonoBehaviour {
 	public float delay = 1f;
 	public float force = 1f;
 	public float offset = 1f;
+	public float physicsStopTime = 3f;
 	public GameObject laser;
 	public GameObject container;
 
@@ -48,6 +49,7 @@ public class SpawnController : MonoBehaviour {
 		audio.Play();
 	}
 
+
 	void Update(){
 		gameObject.transform.position = laser.transform.position;
 		gameObject.transform.forward = laser.transform.forward;
@@ -58,6 +60,7 @@ public class SpawnController : MonoBehaviour {
 		if(tearcount < numtears){
 			tears[tearindex].SetActive(true);
 			tearparticles[tearindex].ResetPhysics();
+			tearparticles[tearindex].stopTime = physicsStopTime;
 			tears[tearindex].transform.position = gameObject.transform.position;// + offsetvec;
 			tearrb[tearindex].AddForce(gameObject.transform.forward*force);
 			++tearindex;
