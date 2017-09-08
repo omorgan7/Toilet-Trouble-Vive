@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - tear
+  - wall
+  - toilet
   layers:
   - Default
   - TransparentFX

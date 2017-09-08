@@ -18,11 +18,12 @@ public class SpawnController : MonoBehaviour {
 	private int numtearparticles = 50;
 	private GameObject[] tears;
 	private ParticlePhysicsDespawner[] tearparticles;
-	private Rigidbody[] tearrb;
+	static public Rigidbody[] tearrb;
 	private Vector3 direction;
 	private int tearindex = 0;
 	private int tearcount = 0;
 	private AudioSource audio;
+
 	// Use this for initialization
 	
 	void Awake(){
@@ -54,6 +55,9 @@ public class SpawnController : MonoBehaviour {
 		gameObject.transform.position = laser.transform.position;
 		gameObject.transform.forward = laser.transform.forward;
 		offsetvec = direction*offset;
+	}
+	public int getNumTears(){
+		return numtearparticles;
 	}
 
 	void FireTears(){

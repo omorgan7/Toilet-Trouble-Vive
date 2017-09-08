@@ -6,20 +6,30 @@ public class AntiGravity : MonoBehaviour {
 	public GameObject bathroom;
 	public GameObject toiletCube;
 	public GameObject toilet;
+	public GameObject walls;
+	private Transform[] bathroomWalls;
+	private int numberOfwalls;
 	private Transform[] bathroomObjects ;
 	private int numberOfObjects;
-	private float startDelay = 1f;
+	private float startDelay = 3f;
+
+	private SpawnController SC;
 
 	// Use this for initialization
 	void Start () {
 
 		numberOfObjects = bathroom.transform.childCount;
 		bathroomObjects = new Transform [numberOfObjects];
-		print(bathroom.transform.GetChild(0)==null);
-		print(numberOfObjects);
+		numberOfwalls = walls.transform.childCount;
+		bathroomWalls = new Transform [numberOfwalls];
 		for(int i =0; i<numberOfObjects; ++i){
 			bathroomObjects[i] = bathroom.transform.GetChild(i);
 		}
+		for(int i = 0; i<numberOfwalls;++i){
+			bathroomWalls[i] = walls.transform.GetChild(i);
+		}
+		GameObject SP = GameObject.Find("SpawnPoint");
+		SC= SP.GetComponent<SpawnController>();
 		StartCoroutine(TurnOffGravity());
 	}
 	
@@ -28,11 +38,20 @@ public class AntiGravity : MonoBehaviour {
 		for(int i=0; i<numberOfObjects;++i){
 			if(bathroomObjects[i].GetComponent<BoxCollider>()!=null){
 				bathroomObjects[i].GetComponent<BoxCollider>().enabled = true;
-				bathroomObjects[i].GetComponent<Rigidbody>().AddForce(transform.forward*15);
+			}
+		}
+		for(int i=0; i<numberOfwalls;++i){
+			if(bathroomWalls[i].GetComponent<BoxCollider>()!=null){
+				var normal = bathroomWalls[i].GetComponent<MeshFilter>().mesh.normals[i]; 
+				bathroomWalls[i].GetComponent<BoxCollider>().enabled = true;
+				bathroomWalls[i].GetComponent<Rigidbody>().AddForce(-normal*50);
 			}
 		}
 		toiletCube.GetComponent<BoxCollider>().enabled = true;
-		toilet.GetComponent<Rigidbody>().AddForce(transform.forward*5);
+		for(int i=0; i<SC.getNumTears(); ++i){
+			SpawnController.tearrb[i].useGravity=false;
+		}
+
 	}
 
 }
