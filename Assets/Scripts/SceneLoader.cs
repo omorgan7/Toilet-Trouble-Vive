@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
 
 	SceneState scenestate;
-	AsyncOperation ao;
 	public LoadingAnimator animator;
 
 	void Start(){
@@ -20,9 +19,8 @@ public class SceneLoader : MonoBehaviour {
 	}
 
 	IEnumerator LoadNextLevel(){
-		ao = SceneManager.LoadSceneAsync(scenestate.SceneIndex);
+		AsyncOperation ao = SceneManager.LoadSceneAsync(scenestate.SceneIndex);
 		ao.allowSceneActivation = false;
-		
 		while(ao.progress <= 0.9 && !animator.isDone){
 			animator.asyncLevelProgress = ao.progress + 0.1f;
 			yield return null;
