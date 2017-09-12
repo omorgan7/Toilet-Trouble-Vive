@@ -46,7 +46,7 @@ public class RopeControllerSimple : MonoBehaviour
         whatIsHangingFromTheRope.GetComponent<Rigidbody>().mass = loadMass;
 
         CC = gameObject.AddComponent<CapsuleCollider>();
-        CC.radius = 0.25f;
+        CC.radius = 0.2f;
         CC.center = Vector3.zero;
         CC.direction = 2; // Z-axis for easier "LookAt" orientation
     }
@@ -155,9 +155,8 @@ public class RopeControllerSimple : MonoBehaviour
 
 
          CC.transform.position = A + (D - A) / 2;
-         print(A + (D - A) / 2);
          CC.transform.LookAt(A);
-         CC.height = (D - A).magnitude;
+         CC.height = (D - A).magnitude - 0.25f;
 
     }
 
