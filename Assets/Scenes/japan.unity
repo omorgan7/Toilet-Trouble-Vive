@@ -513,19 +513,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1769858862157148, guid: d56bc2e7308cf44f4abf34dcc5124af8,
     type: 2}
   m_PrefabInternal: {fileID: 523091759}
---- !u!136 &449181647
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 449181645}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.6
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.93, z: 0}
 --- !u!1001 &523091759
 Prefab:
   m_ObjectHideFlags: 0
@@ -565,10 +552,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4642222547582128, guid: d56bc2e7308cf44f4abf34dcc5124af8, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d56bc2e7308cf44f4abf34dcc5124af8, type: 2}
   m_IsPrefabParent: 0
@@ -577,6 +560,44 @@ Camera:
   m_PrefabParentObject: {fileID: 20201496716099314, guid: d56bc2e7308cf44f4abf34dcc5124af8,
     type: 2}
   m_PrefabInternal: {fileID: 523091759}
+--- !u!1 &523091761 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1798904883357782, guid: d56bc2e7308cf44f4abf34dcc5124af8,
+    type: 2}
+  m_PrefabInternal: {fileID: 523091759}
+--- !u!1 &523091762 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1634520565152246, guid: d56bc2e7308cf44f4abf34dcc5124af8,
+    type: 2}
+  m_PrefabInternal: {fileID: 523091759}
+--- !u!114 &523091763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 523091761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &523091764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 523091762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &561575409
 GameObject:
   m_ObjectHideFlags: 0
