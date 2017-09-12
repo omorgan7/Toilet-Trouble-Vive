@@ -5,6 +5,7 @@ using UnityEngine;
 public class AntiGravity : MonoBehaviour {
 	public GameObject bathroom;
 	public GameObject toiletCube;
+	public GameObject UFO;
 	public GameObject toilet;
 	public GameObject walls;
 	private Transform[] bathroomWalls;
@@ -51,6 +52,7 @@ public class AntiGravity : MonoBehaviour {
 		for(int i=0; i<SC.getNumTears(); ++i){
 			SpawnController.tearrb[i].useGravity=false;
 		}
+		UFO.GetComponent<Rigidbody>().AddForce(-4f,0f,0f);
 
 	}
 

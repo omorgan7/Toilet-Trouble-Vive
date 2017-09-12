@@ -8,6 +8,6 @@ public class ObjectRespawner_noWalls : MonoBehaviour {
 		if((other.isTrigger)||(other.tag == "wall")){
 			return;
 		}
-		other.gameObject.transform.position = player.transform.position + player.transform.forward;
+		other.gameObject.transform.position = player.transform.position + Random.onUnitSphere;
 	}
 }
