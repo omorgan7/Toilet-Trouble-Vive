@@ -54,7 +54,7 @@ namespace Gvr.Internal {
     public static readonly string USB_SERVER_IP = "127.0.0.1";
 
     // IP address of the phone, when connected to the PC via WiFi.
-    public static readonly string WIFI_SERVER_IP = "138.38.244.145";
+    public static readonly string WIFI_SERVER_IP = "138.38.153.155";
   }
 }
 /// @endcond

@@ -19,7 +19,7 @@ public class RopeControllerSimple : MonoBehaviour
     //Rope data
     private float ropeLength = 1f;
     private float minRopeLength = 1f;
-    private float maxRopeLength = 5f;
+    private float maxRopeLength = 3f;
     //Mass of what the rope is carrying
     private float loadMass = 10f;
     //How fast we can add more/less rope
