@@ -10,7 +10,7 @@ public class ClickerFunctions : MonoBehaviour {
 	enum Scenes {MainMenu,Loading,House,Japan,Space};
 	void Start(){
 		var temp = GameObject.FindGameObjectsWithTag("LoadingState");
-		if(temp.Length != 1){
+		if(temp.Length < 1){
 			return;
 		}
 		sceneState = temp[0].GetComponent<SceneState>();
@@ -31,7 +31,7 @@ public class ClickerFunctions : MonoBehaviour {
 	void LoadLoadingScreen(){
 		SceneManager.LoadScene((int) Scenes.Loading);
 	}
-	
+
 	public void RestartLevel(){
 		Time.timeScale = 1f;
 		LoadLoadingScreen();
