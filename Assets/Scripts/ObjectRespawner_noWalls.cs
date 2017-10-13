@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectRespawner_noWalls : MonoBehaviour {
+public class ObjectRespawner : MonoBehaviour {
 	public GameObject player;
 	public void OnTriggerExit(Collider other){
-		if((other.isTrigger)||(other.tag == "wall")){
+		if(other.isTrigger){
 			return;
 		}
-		other.gameObject.transform.position = player.transform.position + Random.onUnitSphere;
+		other.gameObject.transform.position = player.transform.position + player.transform.forward;
 	}
 }
