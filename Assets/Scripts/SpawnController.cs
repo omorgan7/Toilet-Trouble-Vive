@@ -27,10 +27,11 @@ public class SpawnController : MonoBehaviour {
 
 	// Use this for initialization
 	
-	void Awake(){
+	void Start () {
 		tears = new GameObject[numtearparticles];
 		tearparticles = new ParticlePhysicsDespawner[numtearparticles];
 		tearrb = new Rigidbody[numtearparticles];
+
 		for(int i = 0; i<numtearparticles; i++){
 			tears[i] = Instantiate(waterprefab);
 			tears[i].transform.parent = container.transform;
@@ -38,9 +39,7 @@ public class SpawnController : MonoBehaviour {
 			tearrb[i] = tears[i].GetComponent<Rigidbody>();
 			tears[i].SetActive(false);
 		}
-	}
-
-	void Start () {
+		
 		audio = gameObject.GetComponent<AudioSource>();
 		InvokeRepeating("FireTears",startDelay,delay);
 		StartCoroutine(AudioDelay());
