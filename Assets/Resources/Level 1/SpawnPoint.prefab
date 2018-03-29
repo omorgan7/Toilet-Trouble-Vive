@@ -132,7 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b759465ec49e4853907636c410e7962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterprefab: {fileID: 0}
+  waterprefab: {fileID: 1675580788960254, guid: 7bf4b050ed4fc8e4da2ab682a4dbb70e,
+    type: 2}
   numtears: 1000
   numtearparticles: 50
   startDelay: 1
