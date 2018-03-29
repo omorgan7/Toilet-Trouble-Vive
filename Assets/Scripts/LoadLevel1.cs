@@ -29,10 +29,15 @@ public class LoadLevel1 : MonoBehaviour {
 		GameObject spawnPointClone = Instantiate(spawnPoint, Vector3.zero, Quaternion.identity);
 		spawnPointClone.name = "spawnPoint";
 
-		SpawnController spawnController = spawnPointClone.GetComponent<SpawnController>();
+		GameObject steamVR = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
+		GameObject steamVRClone = Instantiate(steamVR, Vector3.zero, Quaternion.identity);
+		steamVRClone.name = "SteamVR";
+		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)");
 
+		SpawnController spawnController = spawnPointClone.GetComponent<SpawnController>();
+		
 		if (spawnController) {
-			spawnController.laser = spawnContainer; // HTC Vive in the future.
+			spawnController.laser = rightController != null ? rightController : spawnPointClone;
 			spawnController.container = spawnContainer;
 			spawnController.physicsStopTime = 10f;
 			spawnController.force = 240f;
