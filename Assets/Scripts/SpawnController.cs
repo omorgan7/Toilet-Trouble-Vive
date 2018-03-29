@@ -6,6 +6,7 @@ public class SpawnController : MonoBehaviour {
 
 	public GameObject waterprefab;
 	public int numtears = 1000;
+	public int numtearparticles = 50;
 	public float startDelay = 1f;
 	public float delay = 1f;
 	public float force = 1f;
@@ -15,7 +16,7 @@ public class SpawnController : MonoBehaviour {
 	public GameObject container;
 
 	private Vector3 offsetvec;
-	private int numtearparticles = 50;
+	
 	private GameObject[] tears;
 	private ParticlePhysicsDespawner[] tearparticles;
 	static public Rigidbody[] tearrb;

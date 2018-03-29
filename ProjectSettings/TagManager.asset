@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - tear
-  - wall
-  - toilet
-  - LoadingState
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - Collidable
-  - Tear
-  - StaticTear
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,7 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Above
-    uniqueID: 1274380467
     locked: 0
