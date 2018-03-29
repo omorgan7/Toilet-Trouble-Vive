@@ -6,12 +6,12 @@ public class PauseMenuController : MonoBehaviour {
 	public GameObject pauseMenu;
 
 	void Update(){
-		if(GvrController.AppButtonUp){
-			if(pauseMenu != null){
-				Time.timeScale = 0f;
-				pauseMenu.SetActive(true);
-			}
-		}
+		// if(GvrController.AppButtonUp){
+		// 	if(pauseMenu != null){
+		// 		Time.timeScale = 0f;
+		// 		pauseMenu.SetActive(true);
+		// 	}
+		// }
 	}
 
 	public void ClosePauseMenu(){
