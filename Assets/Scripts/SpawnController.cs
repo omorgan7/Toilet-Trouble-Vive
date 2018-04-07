@@ -66,7 +66,7 @@ public class SpawnController : MonoBehaviour {
 			tearparticles[tearindex].ResetPhysics();
 			tearparticles[tearindex].stopTime = physicsStopTime;
 			tears[tearindex].transform.position = gameObject.transform.position;// + offsetvec;
-			print("firing with" + gameObject.transform.position.ToString());
+//			print("firing with" + gameObject.transform.position.ToString());
 			tearrb[tearindex].AddForce(gameObject.transform.forward*force);
 			++tearindex;
 			++tearcount;
