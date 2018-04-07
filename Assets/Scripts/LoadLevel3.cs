@@ -69,6 +69,9 @@ public class LoadLevel3 : MonoBehaviour {
 		loader = Resources.Load("Level 3/ceiling") as GameObject;
 		GameObject ceiling = Instantiate(loader, new Vector3(-3.273f, 3.169f, 1.174f), Quaternion.identity);
 		ceiling.transform.localScale = new Vector3(3.4724f, 0.0846f, 5.1741f);
+
+		loader = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
+		GameObject SteamVR = Instantiate(loader, new Vector3(-3.21f, 1.1f, 0.93f), Quaternion.identity);
 		
 		GameObject spawnContainer = new GameObject("spawnContainer");
 

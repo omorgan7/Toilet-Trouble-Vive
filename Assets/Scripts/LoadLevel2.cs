@@ -67,6 +67,9 @@ public class LoadLevel2 : MonoBehaviour {
 		GameObject fish4 = Instantiate(loader, new Vector3(-1.624f, 0.758f, -1.735f), Quaternion.Euler(-89.9f, 17.98f, 0));
 		GameObject fish5 = Instantiate(loader, new Vector3(-1.624f, 0.758f, -2.267f), Quaternion.Euler(-89.9f, 0, -18.78f));
 
+		loader = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
+		GameObject SteamVR = Instantiate(loader, new Vector3(0, 0.43f, -1.22f), Quaternion.identity);
+
 		GameObject spawnContainer = new GameObject("spawnContainer");
 
 		GameObject spawnPoint = Resources.Load("Level 2/spawnPoint") as GameObject;

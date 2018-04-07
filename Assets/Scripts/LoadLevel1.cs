@@ -25,6 +25,9 @@ public class LoadLevel1 : MonoBehaviour {
 		GameObject light1 = Instantiate(loader, new Vector3(0, 0.8f, 0.75f), Quaternion.Euler(0, 0, -90));
 		GameObject light2 = Instantiate(loader, new Vector3(0, 0.8f, -0.75f),  Quaternion.Euler(0, 0, -90));	
 
+		loader = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
+		GameObject SteamVR = Instantiate(loader, new Vector3(-0.02f, 0.04f, -0.69f), Quaternion.identity);
+
 		GameObject spawnContainer = new GameObject("spawnContainer");
 
 		GameObject spawnPoint = Resources.Load("Level 1/spawnPoint") as GameObject;
