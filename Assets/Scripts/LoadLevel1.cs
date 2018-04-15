@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class LoadLevel1 : MonoBehaviour {
 	void Awake () {
 
@@ -8,6 +8,7 @@ public class LoadLevel1 : MonoBehaviour {
 		loader = Resources.Load("Level 1/toilet") as GameObject;
 		loader.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
 		GameObject toilet = Instantiate(loader, new Vector3(0.004f, -2.25f, 0.9f), Quaternion.identity);
+		GameObject toiletCollider = toilet.transform.Find("Collider").gameObject;
 
 		loader = Resources.Load("Level 1/door") as GameObject;
 		loader.transform.localScale = new Vector3(1.0f/3.5f, 0.175f, 0.25f);
@@ -35,12 +36,33 @@ public class LoadLevel1 : MonoBehaviour {
 		GameObject spawnPointClone = Instantiate(spawnPoint, Vector3.zero, Quaternion.identity);
 		spawnPointClone.name = "spawnPoint";
 
+		loader = Resources.Load("Level 1/EventSystem") as GameObject;
+		GameObject eventSystem = Instantiate(loader, Vector3.zero, Quaternion.identity);
+
+		loader = Resources.Load("CommonPrefabs/HUD") as GameObject;
+		GameObject hud = Instantiate(loader, Vector3.zero, Quaternion.Euler(0f, 90f, 0f));
+
 		GameObject steamVR = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
 		GameObject steamVRClone = Instantiate(steamVR, new Vector3(-0.02f, -1.08f, -0.92f), Quaternion.identity);
 		steamVRClone.name = "SteamVR";
 		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)");
+		GameObject leftController = GameObject.Find("SteamVR/[CameraRig]/Controller (left)");
+		GameObject eyeHMD = GameObject.Find("SteamVR/[CameraRig]/Camera (head)");
 
 		SpawnController spawnController = spawnPointClone.GetComponent<SpawnController>();
+		
+		if (leftController) {
+			HudFollower hudFollower = eventSystem.GetComponent<HudFollower>();
+			hudFollower.hud = hud;
+			hudFollower.toFollow = leftController;
+			hudFollower.cameraTransform = eyeHMD.transform;
+		}
+
+		ScoreTracker scoreTracker = eventSystem.GetComponent<ScoreTracker>();
+		if (scoreTracker) {
+			scoreTracker.collider = toiletCollider;
+			scoreTracker.score = hud.transform.Find("ScoreNum").GetComponent<Text>();
+		}
 		
 		if (spawnController) {
 			spawnController.laser = rightController != null ? rightController : spawnPointClone;

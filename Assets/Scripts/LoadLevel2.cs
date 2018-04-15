@@ -93,18 +93,20 @@ public class LoadLevel2 : MonoBehaviour {
 
 		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)"); // could be null
 		GameObject leftController = GameObject.Find("SteamVR/[CameraRig]/Controller (left)"); // could be null
+		GameObject eyeHMD = GameObject.Find("SteamVR/[CameraRig]/Camera (head)");
 
 		loader = Resources.Load("Level 2/EventSystem") as GameObject;
 		GameObject eventSystem = Instantiate(loader, Vector3.zero, Quaternion.identity);
 
 		loader = Resources.Load("CommonPrefabs/HUD") as GameObject;
-		GameObject hud = Instantiate(loader, Vector3.zero, Quaternion.Euler(0f, 90f, 0));
+		GameObject hud = Instantiate(loader, Vector3.zero, Quaternion.identity);
 		hud.name = "HUD";
 
 		if (leftController) {
 			HudFollower hudFollower = eventSystem.GetComponent<HudFollower>();
 			hudFollower.hud = hud;
 			hudFollower.toFollow = leftController;
+			hudFollower.cameraTransform = eyeHMD.transform;
 		}
 
 		EarthquakeGenerator eqGen =  eventSystem.GetComponent<EarthquakeGenerator>();
