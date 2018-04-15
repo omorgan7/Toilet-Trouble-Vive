@@ -23,10 +23,7 @@ public class LoadLevel1 : MonoBehaviour {
 		loader = Resources.Load("Level 1/Light") as GameObject;
 		loader.transform.localScale = new Vector3(0.2f, 1, 0.2f);
 		GameObject light1 = Instantiate(loader, new Vector3(0, 0.8f, 0.75f), Quaternion.Euler(0, 0, -90));
-		GameObject light2 = Instantiate(loader, new Vector3(0, 0.8f, -0.75f),  Quaternion.Euler(0, 0, -90));	
-
-		loader = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
-		GameObject SteamVR = Instantiate(loader, new Vector3(-0.02f, 0.04f, -0.69f), Quaternion.identity);
+		GameObject light2 = Instantiate(loader, new Vector3(0, 0.8f, -0.75f),  Quaternion.Euler(0, 0, -90));
 
 		GameObject spawnContainer = new GameObject("spawnContainer");
 
@@ -36,7 +33,7 @@ public class LoadLevel1 : MonoBehaviour {
 		spawnPointClone.name = "spawnPoint";
 
 		GameObject steamVR = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
-		GameObject steamVRClone = Instantiate(steamVR, Vector3.zero, Quaternion.identity);
+		GameObject steamVRClone = Instantiate(steamVR, new Vector3(-0.02f, 0.04f, -0.69f), Quaternion.identity);
 		steamVRClone.name = "SteamVR";
 		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)");
 
