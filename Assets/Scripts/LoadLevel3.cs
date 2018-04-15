@@ -75,7 +75,7 @@ public class LoadLevel3 : MonoBehaviour {
 		
 		GameObject spawnContainer = new GameObject("spawnContainer");
 
-		GameObject spawnPoint = Resources.Load("Level 2/spawnPoint") as GameObject;
+		GameObject spawnPoint = Resources.Load("Level 3/spawnPoint") as GameObject;
 		
 		GameObject spawnPointClone = Instantiate(spawnPoint, Vector3.zero, Quaternion.identity);
 		spawnPointClone.name = "spawnPoint";
