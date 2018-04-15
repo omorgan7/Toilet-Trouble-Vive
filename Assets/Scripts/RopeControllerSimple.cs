@@ -7,7 +7,7 @@ using UnityEngine;
 public class RopeControllerSimple : MonoBehaviour 
 {
     //Objects that will interact with the rope
-    public Transform whatTheRopeIsConnectedTo;
+    private Transform whatTheRopeIsConnectedTo;
     public Transform whatIsHangingFromTheRope;
 
     //Line renderer used to display the rope
@@ -34,7 +34,10 @@ public class RopeControllerSimple : MonoBehaviour
 
     void Start() 
 	{
+        StartCoroutine(delayedStart());
         springJoint = whatTheRopeIsConnectedTo.GetComponent<SpringJoint>();
+
+      
 
         //Init the line renderer we use to display the rope
         lineRenderer = GetComponent<LineRenderer>();
@@ -102,6 +105,13 @@ public class RopeControllerSimple : MonoBehaviour
 
         //Update length of the rope
         springJoint.maxDistance = ropeLength;
+    }
+
+    IEnumerator delayedStart(){
+        while(!LoadLevel3.loaded){
+            yield return null;
+        }
+        whatTheRopeIsConnectedTo = GameObject.Find("floor(Clone)").transform.GetChild(0);
     }
 
     //Display the rope with a line renderer
