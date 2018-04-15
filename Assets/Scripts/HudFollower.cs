@@ -11,6 +11,6 @@ public class HudFollower : MonoBehaviour {
 		hud.transform.position = toFollow.transform.position;
 
 		// this doesn't work but it should.
-		// hud.transform.LookAt(cameraTransform.forward, cameraTransform.up);
+		hud.transform.LookAt(cameraTransform.position + cameraTransform.forward, cameraTransform.up);
 	}
 }

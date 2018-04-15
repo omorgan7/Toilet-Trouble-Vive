@@ -40,14 +40,15 @@ public class LoadLevel1 : MonoBehaviour {
 		GameObject eventSystem = Instantiate(loader, Vector3.zero, Quaternion.identity);
 
 		loader = Resources.Load("CommonPrefabs/HUD") as GameObject;
-		GameObject hud = Instantiate(loader, Vector3.zero, Quaternion.Euler(0f, 90f, 0f));
+		// GameObject hud = Instantiate(loader, Vector3.zero, Quaternion.Euler(0f, 90f, 0f));
+		GameObject hud = Instantiate(loader, Vector3.zero, Quaternion.identity);
 
 		GameObject steamVR = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
 		GameObject steamVRClone = Instantiate(steamVR, new Vector3(-0.02f, -1.08f, -0.92f), Quaternion.identity);
 		steamVRClone.name = "SteamVR";
 		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)");
 		GameObject leftController = GameObject.Find("SteamVR/[CameraRig]/Controller (left)");
-		GameObject eyeHMD = GameObject.Find("SteamVR/[CameraRig]/Camera (head)");
+		GameObject eyeHMD = GameObject.Find("SteamVR/[CameraRig]/Camera (eye)");
 
 		SpawnController spawnController = spawnPointClone.GetComponent<SpawnController>();
 		
