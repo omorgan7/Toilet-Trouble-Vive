@@ -5,26 +5,25 @@ using UnityEngine.UI;
 
 public class ScoreTracker : MonoBehaviour {
 
-	public Text Score;
+	public Text score;
 	public GameObject collider;
-
-	private int oldscore = 0;
-	private int tempfontsize;
+	private int oldScore = 0;
+	private int tempFontSize;
 	ToiletCollisionTracker tracker;
 	void Start(){
 		tracker = collider.GetComponent<ToiletCollisionTracker>();
-		tempfontsize = Score.fontSize;
+		tempFontSize = score.fontSize;
 
 	}
 	// Update is called once per frame
 	void LateUpdate () {
-		if(oldscore != tracker.score){
-			Score.fontSize = tempfontsize + 2;
-			Score.text = tracker.score.ToString();
-			oldscore = tracker.score;
+		if(oldScore != tracker.score){
+			score.fontSize = tempFontSize + 2;
+			score.text = tracker.score.ToString();
+			oldScore = tracker.score;
 		}
 		else{
-			Score.fontSize = tempfontsize;
+			score.fontSize = tempFontSize;
 		}
 
 	}

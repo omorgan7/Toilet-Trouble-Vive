@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EarthquakeGenerator : MonoBehaviour {
 
-	public GameObject Bathroom;
-	public GameObject Toilet;
+	public GameObject bathroom;
+	public GameObject toilet;
 	public float varyingDist = 0.5f;
 	public float fineDist = 0.1f;
 	public float speed = 1f;
@@ -17,9 +17,9 @@ public class EarthquakeGenerator : MonoBehaviour {
 
 	void Start(){
 		noise = fineDist;
-		toiletPos = Toilet.transform.position;
-		toiletRB = Toilet.GetComponent<Rigidbody>();
-		bathroomPos = Bathroom.transform.position;
+		toiletPos = toilet.transform.position;
+		toiletRB = toilet.GetComponent<Rigidbody>();
+		bathroomPos = bathroom.transform.position;
 	}
 
 	void Update(){
@@ -33,7 +33,7 @@ public class EarthquakeGenerator : MonoBehaviour {
 		}
 		pingpong = Mathf.PingPong(Time.time,2f * speed)-speed;
 
-		Bathroom.transform.position =  varyingDist*((pingpong+noise) * direction) + bathroomPos;
+		bathroom.transform.position =  varyingDist*((pingpong+noise) * direction) + bathroomPos;
 		//toiletRB.AddForce(varyingDist*((-1*pingpong+noise) * toiletDirection));
 	}
 
