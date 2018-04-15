@@ -72,6 +72,7 @@ public class LoadLevel3 : MonoBehaviour {
 
 		loader = Resources.Load("CommonPrefabs/SteamVR") as GameObject;
 		GameObject SteamVR = Instantiate(loader, new Vector3(-3.21f, 1.1f, 0.93f), Quaternion.identity);
+		SteamVR.name = "SteamVR";
 		
 		GameObject spawnContainer = new GameObject("spawnContainer");
 
@@ -82,8 +83,10 @@ public class LoadLevel3 : MonoBehaviour {
 
 		SpawnController spawnController = spawnPointClone.GetComponent<SpawnController>();
 
+		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)");
+
 		if (spawnController) {
-			spawnController.laser = spawnContainer; // HTC Vive in the future.
+			spawnController.laser = rightController; // HTC Vive in the future.
 			spawnController.container = spawnContainer;
 			spawnController.physicsStopTime = 10f;
 			spawnController.force = 240f;
@@ -105,14 +108,14 @@ public class LoadLevel3 : MonoBehaviour {
 	
 	IEnumerator TurnOffGravity(){
 		yield return new WaitForSeconds(startDelay);
-		for(int i=0; i<objectsInScene.Count;++i){		
-			if(objectsInScene[i].GetComponent<BoxCollider>()!=null){
+		for(int i = 0; i < objectsInScene.Count; ++i){		
+			if(objectsInScene[i].GetComponent<BoxCollider>() != null){
 				objectsInScene[i].GetComponent<BoxCollider>().enabled = true;
-				objectsInScene[i].GetComponent<Rigidbody>().AddForce(-V*50);
+				objectsInScene[i].GetComponent<Rigidbody>().AddForce(-V * 50.0f);
 			}
 		}
 		toilet.GetComponent<BoxCollider>().enabled = true;
-		toilet.GetComponent<Rigidbody>().AddForce(U*75);
+		toilet.GetComponent<Rigidbody>().AddForce(U * 75.0f);
 	}
 
 }
