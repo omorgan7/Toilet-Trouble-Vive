@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadLevel2 : MonoBehaviour {
 
@@ -8,42 +7,52 @@ public class LoadLevel2 : MonoBehaviour {
 	void Awake () {
 
 		GameObject loader;
+		GameObject bathroom = new GameObject("Bathroom");
 
 		loader = Resources.Load("Level 2/floor") as GameObject;
 		GameObject floor = Instantiate(loader, new Vector3(0,-0.26f,-1), Quaternion.identity);
 		floor.transform.localScale = new Vector3(2,1,1);
+		floor.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/plane1") as GameObject;
 		GameObject plane1 = Instantiate(loader, new Vector3(-2, 1.74f,-1), Quaternion.Euler(0,90,0));
 		plane1.transform.localScale = new Vector3(2,2,4);
+		plane1.transform.parent = bathroom.transform;
 
 		loader =  Resources.Load("Level 2/plane2") as GameObject;
 		GameObject plane2 = Instantiate(loader, new Vector3(2, 1.74f,-1), Quaternion.Euler(0,-90,0));
 		plane2.transform.localScale = new Vector3(2,2,4);		
+		plane2.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/plane3") as GameObject;
 		GameObject plane3 = Instantiate(loader, new Vector3(0, 1.74f, 1), Quaternion.Euler(0,180,0));
 		plane3.transform.localScale = new Vector3(2,2,1);
+		plane3.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/plane4") as GameObject;
 		GameObject plane4 = Instantiate(loader, new Vector3(0, 1.74f, -3), Quaternion.Euler(0,0,0));
 		plane4.transform.localScale = new Vector3(2,2,1);		
+		plane4.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/plane5") as GameObject;
 		GameObject plane5 =	Instantiate(loader, new Vector3(-1.52f, 1.22f, 0.9f), Quaternion.Euler(0,180,0));
 		plane5.transform.localScale = new Vector3(0.4f, 1.4f,1);
+		plane5.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/plane6") as GameObject;
 		GameObject plane6 = Instantiate(loader, new Vector3(1.56f, 1.22f, 0.9f), Quaternion.Euler(0,180,0));
 		plane6.transform.localScale = new Vector3(0.4f, 1.4f,1);
+		plane6.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/ceiling") as GameObject;
 		GameObject ceiling = Instantiate(loader, new Vector3(0, 3.74f, -1), Quaternion.Euler(90,0,0));
 		ceiling.transform.localScale = new Vector3(2,2,2);
+		ceiling.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/cube") as GameObject;
 		GameObject cube = Instantiate(loader, new Vector3(0, 1.289f, 0.97f), Quaternion.identity);
 		cube.transform.localScale = new Vector3(0.8f, 0.05f,0.05f);
+		cube.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/pictureFrame") as GameObject;
 		GameObject pictureFrame = Instantiate(loader, new Vector3(0.354f, 1.731f, 1.082f), Quaternion.Euler(-90,0,0));
@@ -52,9 +61,11 @@ public class LoadLevel2 : MonoBehaviour {
 		loader = Resources.Load("Level 2/light") as GameObject;
 		GameObject light = Instantiate(loader, new Vector3(0, 3.67f, -1), Quaternion.Euler(0, 0, -90));
 		light.transform.localScale = new Vector3(0.2f, 1,0.2f);
+		light.transform.parent = bathroom.transform;
 
 		loader = Resources.Load("Level 2/toilet") as GameObject;
 		GameObject toilet = Instantiate(loader, new Vector3(0,0,0), Quaternion.identity);
+		GameObject toiletCollider = toilet.transform.Find("Collider").gameObject;
 
 		loader =  Resources.Load("Level 2/sink") as GameObject;
 		GameObject sink = Instantiate(loader, new Vector3(-1.8f, 0.29f, -1.95f), Quaternion.identity);
@@ -80,7 +91,27 @@ public class LoadLevel2 : MonoBehaviour {
 
 		SpawnController spawnController = spawnPointClone.GetComponent<SpawnController>();
 
-		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)");
+		GameObject rightController = GameObject.Find("SteamVR/[CameraRig]/Controller (right)"); // could be null
+
+		loader = Resources.Load("Level 2/EventSystem") as GameObject;
+		GameObject eventSystem = Instantiate(loader, Vector3.zero, Quaternion.identity);
+
+		loader = Resources.Load("CommonPrefabs/HUD") as GameObject;
+		GameObject hud = Instantiate(loader, Vector3.zero, Quaternion.identity);
+		hud.name = "HUD";
+
+		EarthquakeGenerator eqGen =  eventSystem.GetComponent<EarthquakeGenerator>();
+		ScoreTracker scoreTracker = eventSystem.GetComponent<ScoreTracker>();
+
+		if (eqGen) {
+			eqGen.bathroom = bathroom;
+			eqGen.toilet = toilet;
+		}
+
+		if (scoreTracker) {
+			scoreTracker.collider = toiletCollider;
+			scoreTracker.score = hud.transform.Find("ScoreNum").GetComponent<Text>();
+		}
 
 		if (spawnController) {
 			spawnController.laser = rightController; // HTC Vive in the future.
@@ -88,6 +119,7 @@ public class LoadLevel2 : MonoBehaviour {
 			spawnController.physicsStopTime = 10f;
 			spawnController.force = 240f;
 		}
+
 	}
 	
 }
